@@ -6,7 +6,7 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 35
-outline_size = 1
+outline_size = 3
 outline_color = Color( 1, 0.00392157, 0.00392157, 1 )
 font_data = ExtResource( 1 )
 
@@ -47,7 +47,7 @@ margin_left = 175.0
 margin_right = 350.0
 margin_bottom = 43.0
 theme = ExtResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "9999999"
 __meta__ = {
@@ -71,7 +71,7 @@ margin_top = 43.0
 margin_right = 275.0
 margin_bottom = 86.0
 theme = ExtResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "100%"
 __meta__ = {

@@ -18,7 +18,7 @@ func _on_Area_body_entered(body):
 		add_child(particles)
 		
 		particles.exploded = true
-		particles.scale = Vector3(1,1,1)
+		particles.scale = Vector3(2,2,2)
 		particles.transform.origin = transform.origin
 		body.queue_free()
 
