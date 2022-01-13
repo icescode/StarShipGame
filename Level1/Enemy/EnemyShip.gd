@@ -26,7 +26,7 @@ func _ready():
 		speedChangeTimer.start()
 	
 func _physics_process(delta):
-	print(delta)
+	
 	if AnimStarter == 1 :
 		$AnimationPlayer.play(RIGHT_MANUVER)
 	elif AnimStarter == 2 :

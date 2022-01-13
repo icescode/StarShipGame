@@ -26,9 +26,9 @@ var levelCompleted : bool = false
 #PLAYER
 var playerMaxSpeed : int = 20
 var playerAcceleration : float = 1.0
-var playerRocketInterval : float = 0.25
+var playerRocketInterval : float = 0.1
 var playerXClamp : Array = [-14,14]
-var playerYClamp : Array = [1.5, 10]
+var playerYClamp : Array = [1.0, 10]
 var playerDecreasePointWhenCollide : int = 10
 var playerMinimalGroundHitElevation : float = 0.3
 var playerShootShipPoint : int = 50
@@ -49,8 +49,8 @@ const SS_SPEED = {
 	MEDIUM_SPEED = -20,
 	HIGH_SPEED = -30
 }
-const MIN_SHIP_ELEVATION : float = 4.0
-const MAX_SHIP_ELEVATION : float = 5.0
+const MIN_SHIP_ELEVATION : float = 1.0
+const MAX_SHIP_ELEVATION : float = 4.0
 
 
 #HELI
@@ -63,7 +63,8 @@ const MAX_HELI_ELEVATION : float = 4.0
 const MIN_ENEMY_HORIZON : float = -2.0
 const MAX_ENEMY_HORIZON : float = 2.0
 const MAX_ENEMY_TARGET_POS : float = -20.0
-
+const MIN_SPAWNER_POS : float = 60.0
+const MAX_SPAWNER_POS : float = 100.0
 #QDON
 var maxQdon: int = 0
 var qdon = load("res://Level1/Enemy/QDon.tscn")
@@ -213,12 +214,14 @@ func generateRandowStealthShip(seeder : int) :
 	
 	if seeder > 0 :
 		for i in range(seeder) :			
-			var s_ship = enemyStealhShip.instance()
-			var random_y : float = rand_range(0.2,2)
-			var random_z : float = rand_range(60,100)
-			var random_x : float = rand_range(-4,4)
 			
-			s_ship.transform.origin = Vector3(random_x,random_y,random_z)
+			#pos where enemies start
+			var s_ship = enemyStealhShip.instance()
+			var random_y : float = rand_range(MIN_SHIP_ELEVATION,MAX_SHIP_ELEVATION)
+			var random_z : float = rand_range(MIN_SPAWNER_POS,MAX_SPAWNER_POS)
+			var random_x : float = rand_range(MIN_ENEMY_HORIZON,MAX_ENEMY_HORIZON)
+			
+			s_ship.transform.origin = Vector3(ceil(random_x),ceil(random_y),ceil(random_z))
 			s_ship.AnimStarter = i
 			
 			add_child(s_ship)
@@ -227,10 +230,10 @@ func generateRandomHeli(seeder : int) :
 	if seeder > 0 :
 		for i in range(seeder) :
 			var heli = enemyHeli.instance()
-			var random_y : float = rand_range(0.2,2)
-			var random_z : float = rand_range(60,80)
-			var random_x : float = rand_range(-4,4)
-			heli.transform.origin = Vector3(random_x,random_y,random_z)
+			var random_y : float = rand_range(MIN_HELI_ELEVATION,MAX_HELI_ELEVATION)
+			var random_z : float = rand_range(MIN_SPAWNER_POS,MAX_SPAWNER_POS)
+			var random_x : float = rand_range(MIN_ENEMY_HORIZON,MAX_ENEMY_HORIZON)
+			heli.transform.origin = Vector3(ceil(random_x),ceil(random_y),ceil(random_z))
 			add_child(heli)
 
 func mainLagi() :
