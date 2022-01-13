@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/bensound-hey.mp3-63f9428d16952493039643e762d3c4f6.mp3str"
+
+[deps]
+
+source_file="res://Audio/bensound-hey.mp3"
+dest_files=[ "res://.import/bensound-hey.mp3-63f9428d16952493039643e762d3c4f6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

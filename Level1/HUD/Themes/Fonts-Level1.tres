@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=3 format=2]
+
+[ext_resource path="res://Level1/HUD/Font/nasalization-rg.otf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 200
+outline_size = 14
+outline_color = Color( 1, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[resource]
+default_font = SubResource( 1 )

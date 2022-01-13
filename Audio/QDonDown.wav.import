@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/QDonDown.wav-39eb3bf18a12cb091a543e8ec5b2758d.sample"
+
+[deps]
+
+source_file="res://Audio/QDonDown.wav"
+dest_files=[ "res://.import/QDonDown.wav-39eb3bf18a12cb091a543e8ec5b2758d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

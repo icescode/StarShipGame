@@ -1,0 +1,137 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Level1/Player/StarWars.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Level1/Player/Player.gd" type="Script" id=3]
+[ext_resource path="res://Explosion/Explosion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Audio/thrusterFire_001.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Level1/Player/CrossHair.png" type="Texture" id=6]
+
+[sub_resource type="BoxShape" id=2]
+
+[sub_resource type="Animation" id=13]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 90 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, -90 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Roll"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 360 ) ]
+}
+
+[node name="Player" type="KinematicBody"]
+script = ExtResource( 3 )
+
+[node name="StarWars" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, -0.309233 )
+
+[node name="Explosion" parent="." instance=ExtResource( 4 )]
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape2" type="CollisionShape" parent="Area"]
+transform = Transform( 2.00886, 0, 0, 0, 0.563495, 0, 0, 0, 2.74919, 0, 0.0783896, 0 )
+shape = SubResource( 2 )
+
+[node name="BackLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0167626, -2.68583 )
+light_color = Color( 1, 0, 0, 1 )
+light_energy = 10.0
+light_bake_mode = 2
+omni_range = 0.993103
+
+[node name="Gun1" type="Spatial" parent="."]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.5, -0.2, 2.5 )
+
+[node name="Gun2" type="Spatial" parent="."]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.5, -0.2, 2.5 )
+
+[node name="FrontLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -1, 0.00101239, 0, -0.00101239, -1, 0, -0.00749789, 7.40612 )
+light_color = Color( 1, 0.937255, 0, 1 )
+light_energy = 50.0
+light_bake_mode = 2
+spot_range = 40.0
+spot_angle = 26.7346
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/ManuverKanan = SubResource( 13 )
+anims/ManuverKiri = SubResource( 14 )
+anims/RESET = SubResource( 5 )
+anims/Roll = SubResource( 7 )
+
+[node name="EnggineSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 5 )
+unit_db = 1.0
+unit_size = 12.0
+max_db = 6.0
+max_distance = 50.0
+
+[node name="CrossHair" type="Sprite3D" parent="."]
+transform = Transform( 0.176777, -0.176777, 0, 0.176777, 0.176777, 0, 0, 0, 0.25, 0, -0.2, 40 )
+use_in_baked_light = true
+texture = ExtResource( 6 )
+
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
